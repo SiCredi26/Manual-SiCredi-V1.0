@@ -9,3 +9,6 @@
    - Seguimiento de pólizas de seguro.
 4. **Flujo de Efectivo**:
    - Integración de ventas proyectadas vs. cuotas de crédito.
+
+   <img width="516" height="1434" alt="image" src="https://github.com/user-attachments/assets/114dad8a-656d-42ba-9809-a21331dda7f6" />
+
