@@ -8,7 +8,7 @@
    - Registro de facturas y números de serie.
    - Seguimiento de pólizas de seguro.
 4. **El método estandarizado de cuota fija y DSCR**:
-   - Definiciones y metodo.
+   - Definiciones y método.
 
   
 
