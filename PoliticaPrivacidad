@@ -2,12 +2,63 @@
 <html>
 
 <head>
-    <title>olitica de Privacidad</title>
+    <title>Politica de Privacidad</title>
 </head>
 
 <body>
 
-    <h1>Politica de Orivacidad</h1>
+    <h1># Política de Privacidad
+
+**SiCredi [Simulador de Crédito]**
+Última actualización: Mayo, 2025
+
+Bienvenido a SiCredi, una aplicación dirigida a vendedores y distribuidores de maquinaria agrícola.
+La presente Política de Privacidad describe cómo recopilamos, utilizamos y protegemos la información relacionada con el uso de nuestra aplicación disponible en Google Play.
+## 1. Información que recopilamos
+Nuestra aplicación **no recopila datos personales sensibles ni información privada del usuario** durante el uso normal de la plataforma.
+Únicamente recopilamos la información mínima necesaria para administrar la suscripción mensual y permitir el acceso al servicio, la cual puede incluir:
+* Nombre del usuario o empresa
+* Correo electrónico
+* Estado de la suscripción
+* Identificador de compra o transacción generado por Google Play
+* Información técnica básica del dispositivo necesaria para el funcionamiento de la aplicación
+Los pagos y transacciones son procesados directamente por Google Play y no almacenamos información bancaria, números de tarjeta ni datos financieros del usuario.
+
+## 2. Uso de la información
+La información recopilada se utiliza exclusivamente para:
+* Activar y administrar la suscripción mensual
+* Verificar pagos y renovaciones
+* Permitir el acceso a las funciones de la aplicación
+* Brindar soporte técnico al usuario
+* Mejorar el funcionamiento y estabilidad de la aplicación
+
+## 3. Compartición de información
+No vendemos, alquilamos ni compartimos información personal de los usuarios con terceros, excepto cuando sea requerido por ley o necesario para procesar pagos mediante Google Play.
+
+## 4. Seguridad
+Implementamos medidas razonables de seguridad para proteger la información relacionada con la suscripción y evitar accesos no autorizados.
+
+## 5. Servicios de terceros
+La aplicación puede utilizar servicios proporcionados por terceros relacionados con:
+* Procesamiento de pagos
+* Gestión de suscripciones
+* Servicios de alojamiento o análisis técnico
+Estos servicios operan bajo sus propias políticas de privacidad.
+
+## 6. Privacidad de menores
+Nuestra aplicación no está dirigida a menores de edad y no recopilamos conscientemente información de menores.
+
+## 7. Cancelación de suscripción
+Los usuarios pueden cancelar su suscripción en cualquier momento desde su cuenta de Google Play.
+
+## 8. Cambios a esta política
+Nos reservamos el derecho de modificar esta Política de Privacidad en cualquier momento. Las modificaciones serán publicadas dentro de la aplicación o en la página oficial correspondiente.
+
+## 9. Contacto
+Si tiene preguntas relacionadas con esta Política de Privacidad, puede contactarnos en:
+* Correo electrónico: jcmex.guy@gmail.com
+---
+Esta aplicación únicamente recopila la información necesaria para administrar suscripciones y pagos mensuales mediante Google Play. No recopilamos datos personales sensibles ni información financiera de los usuarios.</h1>
 
     <a href="index.html">
         Regresar
