@@ -5,95 +5,178 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Servicios Integrales a la Agricultura</title>
     <style>
-        /* Estilos para que se vea moderno */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background:linear-gradient(135deg,#e8f0f7,#f4f7f6);
+    color:#333;
+    padding:40px 20px;
+}
+
+.container{
+    max-width:950px;
+    margin:auto;
+    background:white;
+    border-radius:18px;
+    padding:50px;
+    box-shadow:0 8px 30px rgba(0,0,0,0.12);
+}
+
+.header{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.logo{
+    width:180px;
+    margin-bottom:20px;
+}
+
+h1{
+    font-size:40px;
+    color:#1e3a5f;
+    margin-bottom:15px;
+}
+
+.subtitulo{
+    font-size:18px;
+    color:#5f6c7b;
+    max-width:750px;
+    margin:auto;
+    line-height:1.8;
+}
+
+h2{
+    color:#2563eb;
+    margin-top:35px;
+    margin-bottom:20px;
+}
+
+ul{
+    list-style:none;
+    margin-top:20px;
+}
+
+li{
+    background:#f8fafc;
+    margin-bottom:18px;
+    padding:20px;
+    border-left:6px solid #2563eb;
+    border-radius:10px;
+    transition:0.3s;
+}
+
+li:hover{
+    transform:translateX(5px);
+    background:#eef4ff;
+}
+
+strong{
+    color:#1e3a5f;
+}
+
+.botones{
+    margin-top:40px;
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
 .boton{
-    background:#2d89ef;
+    background:#2563eb;
     color:white;
-    padding:12px 20px;
+    padding:14px 28px;
     text-decoration:none;
-    border-radius:8px;
+    border-radius:10px;
     font-weight:bold;
+    transition:0.3s;
+    box-shadow:0 4px 10px rgba(37,99,235,0.3);
 }
 
 .boton:hover{
-    background:#1b5fa7;
-}    
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 0 20px;
-            background-color: #f4f7f6;
-        }
-        .container {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-        h1 {
-            color: #2c3e50;
-            border-bottom: 3px solid #3498db;
-            padding-bottom: 10px;
-        }
-        h2 {
-            color: #2980b9;
-            margin-top: 25px;
-        }
-        .btn-descarga {
-            display: inline-block;
-            background-color: #3498db;
-            color: white;
-            padding: 12px 24px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            margin: 20px 0;
-            transition: background 0.3s;
-        }
-        .btn-descarga:hover {
-            background-color: #2980b9;
-        }
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        li {
-            background: #f9f9f9;
-            margin-bottom: 10px;
-            padding: 15px;
-            border-left: 5px solid #3498db;
-            border-radius: 4px;
-        }
-        strong {
-            color: #2c3e50;
-        }
-    </style>
-</head>
-<body>
-    <div style="text-align:center; margin-top:30px;">
-       <img src="ppa.gif" alt="Logo SiCredi" width="220">
-    <div class="container">
-        <h1>Servicios Integrales a la Agricultura</h1>
-        
-        <p>La calidad de sus productos y la eficiencia productiva están estrechamente relacionadas y afectan directamente la liquidez de su negocio.
-Los objetivos de Servicios Integrales a la Agricultura son ofrecerle alternativas que le permitan alcanzar la competitividad que demandan los mercados actuales.
-Le invitamos a dar un recorrido por nuestros servicios.</p>
-        
-        <ul>
-            <li><strong>1. Asesoría en proyectos productivos:</strong> Elaboración y desarrollo de proyectos que requieren financiamiento.</li>
-            <li><strong>2. Mecanización agrícola bajo proyectos específicos:</strong> Proyectos adecuados a la necesidad y requerimiento del cliente.</li>
-            <li><strong>3. Estudios sobre tecnificación agrícola:</strong> Seguramente a usted le gustaría conocer qué tecnología le ofrece mayores beneficios en su actividad.</li>
-        
-        </ul>                <!-- Asegúrate de que el nombre del PDF sea exacto al que subiste -->
-        <a href="SiCrediAppManualV1.pdf" class="btn-descarga" target="_blank">📄 Descargar Manual SiCredi PDF</a>
-        <a href="PoliticaPrivacidad.html"class="boton"> Ver Política de Privacidad </a>
+    background:#1d4ed8;
+    transform:scale(1.05);
+}
 
-        <p style="margin-top: 30px; font-size: 0.9em; color: #7f8c8d;">
-            © 2024 SiCredi - Documentación Técnica
+.footer{
+    text-align:center;
+    margin-top:40px;
+    color:#7f8c8d;
+    font-size:14px;
+}
+
+</style>
+</head>
+<div class="container">
+
+    <div class="header">
+
+        <img src="ppa.gif" alt="Logo SiCredi" class="logo">
+
+        <h1>Servicios Integrales a la Agricultura</h1>
+
+        <p class="subtitulo">
+            La calidad de sus productos y la eficiencia productiva están
+            estrechamente relacionadas y afectan directamente la liquidez
+            de su negocio.
+            <br><br>
+            Nuestro objetivo es ofrecer alternativas tecnológicas y financieras
+            que impulsen la competitividad y crecimiento del sector agrícola.
         </p>
+
     </div>
+
+    <h2>Nuestros Servicios</h2>
+
+    <ul>
+
+        <li>
+            <strong>1. Asesoría en proyectos productivos:</strong><br>
+            Elaboración y desarrollo de proyectos sujetos a financiamiento.
+        </li>
+
+        <li>
+            <strong>2. Mecanización agrícola:</strong><br>
+            Soluciones especializadas adaptadas a las necesidades operativas
+            de cada cliente.
+        </li>
+
+        <li>
+            <strong>3. Tecnificación agrícola:</strong><br>
+            Estudios y análisis para identificar tecnologías con mayor
+            rentabilidad y eficiencia.
+        </li>
+
+    </ul>
+
+    <div class="botones">
+
+        <a href="SiCrediAppManualV1.pdf"
+           class="boton"
+           target="_blank">
+           📄 Descargar Manual
+        </a>
+
+        <a href="PoliticaPrivacidad.html"
+           class="boton">
+           🔒 Política de Privacidad
+        </a>
+
+    </div>
+
+    <div class="footer">
+        © 2026 SiCredi — Plataforma Institucional
+    </div>
+
+</div>
+
 </body>
+
 </html>
