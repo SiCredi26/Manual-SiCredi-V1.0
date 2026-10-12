@@ -1,1 +1,322 @@
 
+<section id="sicredi" class="sicredi-section">
+  <div class="sicredi-container">
+
+    <!-- ENCABEZADO -->
+    <header class="sicredi-hero">
+      <p class="sicredi-eyebrow">
+        SIA · Servicios Integrales a la Agricultura
+      </p>
+
+      <h2>
+        Antes de gestionar el crédito de un tractor, analiza la capacidad de pago del productor.
+      </h2>
+
+      <p class="sicredi-lead">
+        SiCredi te ayuda a realizar una evaluación financiera preliminar de la explotación agrícola para estimar si
+        su flujo puede cubrir los pagos de la maquinaria.
+      </p>
+
+      <div class="sicredi-actions">
+        <a class="sicredi-btn sicredi-btn-primary"
+           href="#sicredi-demo">
+          ▶ Ver demostración · 2 minutos
+        </a>
+
+        <a class="sicredi-btn sicredi-btn-outline"
+           href="https://play.google.com/store/apps/details?id=com.sumisoft.sicredit"
+           target="_blank"
+           rel="noopener noreferrer">
+          Descargar en Google Play
+        </a>
+      </div>
+
+      <p class="sicredi-note">
+        Conoce cómo funciona y accede a la aplicación para Android.
+      </p>
+    </header>
+
+    <!-- PROBLEMA COMERCIAL -->
+    <div class="sicredi-problem">
+      <h3>Evalúa antes de integrar el expediente</h3>
+
+      <p>
+        Una operación de maquinaria puede detenerse cuando
+        el productor no tiene capacidad de pago suficiente.
+        Revisar preliminarmente el flujo de su actividad
+        agrícola puede ayudar a detectar posibles dificultades
+        antes de avanzar con el trámite de financiamiento.
+      </p>
+    </div>
+
+    <!-- VIDEO DE YOUTUBE -->
+    <div id="sicredi-demo" class="sicredi-demo">
+      <p class="sicredi-eyebrow">DEMOSTRACIÓN EN VIDEO</p>
+
+      <h3>Conoce SiCredi en 2 minutos</h3>
+
+      <p>
+        Observa cómo la aplicación relaciona la información
+        financiera de la explotación agrícola con los pagos
+        previstos para la maquinaria.
+      </p>
+
+      <div class="sicredi-video">
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/Rmyxb_dN6W4"
+          title="Demostración de SiCredi para vendedores de maquinaria agrícola"
+          loading="lazy"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allow="accelerometer; clipboard-write; encrypted-media;
+                 gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <p class="sicredi-video-caption">
+        Una demostración práctica de la evaluación financiera
+        preliminar con SiCredi.
+      </p>
+    </div>
+
+    <!-- BENEFICIOS -->
+    <div class="sicredi-benefits">
+      <h3>¿Cómo puede ayudarte SiCredi?</h3>
+
+      <div class="sicredi-grid">
+        <article class="sicredi-card">
+          <h4>01. Capacidad de pago</h4>
+          <p>
+            Analiza si el flujo neto de la actividad agrícola
+            puede cubrir los pagos previstos.
+          </p>
+        </article>
+
+        <article class="sicredi-card">
+          <h4>02. Calendario de pagos</h4>
+          <p>
+            Consulta la corrida financiera y la relación entre
+            las condiciones de financiamiento y el flujo agrícola.
+          </p>
+        </article>
+
+        <article class="sicredi-card">
+          <h4>03. Evaluación preliminar</h4>
+          <p>
+            Utiliza los resultados como apoyo para decidir
+            cómo avanzar antes de presentar la operación
+            a la institución financiera.
+          </p>
+        </article>
+      </div>
+    </div>
+
+    <!-- LLAMADA FINAL A LA ACCIÓN -->
+    <div class="sicredi-final">
+      <h3>Conoce SiCredi. Descárgala y explora su funcionamiento.</h3>
+
+      <p>
+        Da el primer paso para incorporar una evaluación
+        financiera preliminar a tu proceso de venta de maquinaria.
+      </p>
+
+      <a class="sicredi-btn sicredi-btn-primary"
+         href="https://play.google.com/store/apps/details?id=com.sumisoft.sicredit"
+         target="_blank"
+         rel="noopener noreferrer">
+        Descargar SiCredi en Google Play
+      </a>
+    </div>
+
+    <p class="sicredi-disclaimer">
+      SiCredi apoya la evaluación financiera preliminar de la
+      capacidad de pago. No sustituye el análisis, los requisitos
+      ni la decisión de crédito de la institución financiera.
+    </p>
+
+  </div>
+</section>
+
+<style>
+.sicredi-section {
+  padding: 64px 20px;
+  color: #26372d;
+  background: #f6f8f5;
+  font-family: inherit;
+}
+
+.sicredi-container {
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.sicredi-hero {
+  max-width: 850px;
+  margin: 0 auto 52px;
+  text-align: center;
+}
+
+.sicredi-eyebrow {
+  color: #176b45;
+  font-size: .85rem;
+  font-weight: 700;
+  letter-spacing: .07em;
+}
+
+.sicredi-hero h2 {
+  margin: 18px 0;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  line-height: 1.13;
+}
+
+.sicredi-lead {
+  max-width: 740px;
+  margin: 0 auto;
+  font-size: 1.12rem;
+  line-height: 1.7;
+}
+
+.sicredi-actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.sicredi-btn {
+  display: inline-block;
+  padding: 14px 22px;
+  border: 2px solid #176b45;
+  border-radius: 7px;
+  font-weight: 700;
+  line-height: 1.4;
+  text-align: center;
+  text-decoration: none;
+  transition: background .2s, color .2s;
+}
+
+.sicredi-btn-primary {
+  color: #fff;
+  background: #176b45;
+}
+
+.sicredi-btn-primary:hover {
+  color: #fff;
+  background: #105436;
+}
+
+.sicredi-btn-outline {
+  color: #176b45;
+  background: transparent;
+}
+
+.sicredi-btn-outline:hover {
+  color: #fff;
+  background: #176b45;
+}
+
+.sicredi-note,
+.sicredi-video-caption {
+  color: #68746b;
+  font-size: .9rem;
+}
+
+.sicredi-problem,
+.sicredi-demo,
+.sicredi-benefits,
+.sicredi-final {
+  margin: 30px 0;
+  padding: 30px;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.sicredi-section h3 {
+  font-size: clamp(1.45rem, 3vw, 1.9rem);
+  line-height: 1.3;
+}
+
+.sicredi-section p {
+  line-height: 1.75;
+}
+
+.sicredi-demo {
+  text-align: center;
+  scroll-margin-top: 30px;
+}
+
+.sicredi-video {
+  width: 100%;
+  max-width: 800px;
+  margin: 24px auto 0;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #111;
+}
+
+.sicredi-video iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.sicredi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.sicredi-card {
+  padding: 22px;
+  border: 1px solid #e0e7e0;
+  border-radius: 9px;
+}
+
+.sicredi-card h4 {
+  color: #176b45;
+  line-height: 1.4;
+}
+
+.sicredi-final {
+  text-align: center;
+  background: #eaf2eb;
+}
+
+.sicredi-disclaimer {
+  max-width: 800px;
+  margin: 24px auto 0;
+  color: #68746b;
+  font-size: .85rem;
+  text-align: center;
+}
+
+@media (max-width: 700px) {
+  .sicredi-section {
+    padding: 40px 15px;
+  }
+
+  .sicredi-problem,
+  .sicredi-demo,
+  .sicredi-benefits,
+  .sicredi-final {
+    padding: 20px;
+  }
+
+  .sicredi-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sicredi-actions {
+    flex-direction: column;
+  }
+
+  .sicredi-btn {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+</style>
+
