@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SIA | Servicios Integrales a la Agricultura</title>
+    
     <!-- Google Fonts & FontAwesome Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -78,32 +79,32 @@
             color: var(--primary);
         }
 
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #e8f5e9 0%, #ffffff 100%);
-            padding: 5rem 2rem;
+/* Hero Section con la nueva imagen */
+    <section class="hero" id="inicio">
+        <div class="hero-banner-container">
+            <img src="SIABanner.png" alt="Ingeniería y evaluación para inversiones agrícolas - SIA" class="hero-img">
+        </div>
+    </section>
+.hero {
+            padding: 0;
+            background: #ffffff;
             text-align: center;
         }
 
-        .hero-content {
-            max-width: 850px;
+        .hero-banner-container {
+            max-width: 1200px;
             margin: 0 auto;
+            padding: 2rem 1rem;
         }
 
-        .hero h1 {
-            font-size: 2.8rem;
-            color: var(--dark);
-            margin-bottom: 1.2rem;
-            font-weight: 700;
-            line-height: 1.2;
+        .hero-img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            display: block;
         }
-
-        .hero p {
-            font-size: 1.2rem;
-            color: var(--gray);
-            margin-bottom: 2rem;
-        }
-
+        
         .btn-group {
             display: flex;
             gap: 1rem;
