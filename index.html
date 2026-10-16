@@ -390,7 +390,28 @@
     <!-- App Highlight Section -->
     <section class="app-highlight" id="app">
         <div class="app-container">
-            <div class="app-text">
+<!-- Columna Izquierda: Video y Botones de Descarga -->
+            <div>
+                <div style="width: 100%; margin-bottom: 1.5rem;">
+                    <video controls autoplay muted loop playsinline width="100%" style="border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); display: block;">
+                        <source src="usos.mp4" type="video/mp4">
+                        Su navegador no soporta el reproductor de video.
+                    </video>
+                </div>
+                
+                <div class="btn-group" style="flex-direction: column; align-items: stretch; width: 100%;">
+                    <a href="https://drive.google.com/file/d/1U4S7dJVnKMkJvbFUQul3ebQSnTbnrnWQ/view?usp=drive_link" target="_blank" class="btn btn-primary" style="justify-content: center;">
+                        <i class="fa-brands fa-google-play"></i> Descargar demo
+                    </a>
+                    <a href="SiCrediAppManualV1.pdf" target="_blank" class="btn btn-secondary" style="justify-content: center;">
+                        <i class="fa-solid fa-file-pdf"></i> Descargar Manual Técnico (PDF)
+                    </a>
+                </div>
+            </div>
+
+            <!-- Columna Derecha: Títulos, Textos y Casos de Uso (al nivel del video) -->            
+            
+            <div class="app-text">               
                 <h2>Evaluación financiera de inversiones agrícolas: App SiCredi</h2>
                 <p>No pierdas ventas por tardar semanas en evaluar el crédito de tus clientes. Genera corridas financieras con flujo neto agrícola y dictámenes en 3 minutos. 
                     Calcula la viabilidad crediticia y cierra más ventas de contado y financiado.</p>
@@ -430,7 +451,7 @@ SiCredi permite evaluar rápidamente la capacidad de pago de una operación, con
 
         <!-- 2. Contenedor del video (Fuera del btn-group) -->
         <div style="width: 100%; max-width: 400px; margin: 0 auto;">
-            <video controls autoplay muted loop playsinline width="100%" style="border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
+            <video controls autoplay muted loop playsinline width="100%" controls style="border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08);">
                 <!-- Cambia 'demo.mp4' por el nombre con el que subiste tu video al repositorio -->
                 <source src="usos.mp4" type="video/mp4">
                 Su navegador no soporta el reproductor de video.
