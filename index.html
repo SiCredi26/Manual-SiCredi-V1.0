@@ -389,6 +389,41 @@
             .nav-container { flex-direction: column; gap: 1rem; }
               .ticker-container { font-size: 0.8rem; }  
         }
+    /* Cinta Dinámica Animada (Ticker Continuo) */
+        .ticker-wrapper {
+            background: #e8f5e9;
+            border-top: 1px solid #c8e6c9;
+            border-bottom: 1px solid #c8e6c9;
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+            width: 100%;
+            padding: 0.75rem 0;
+        }
+
+        .ticker-track {
+            display: inline-flex;
+            gap: 3rem;
+            animation: scrollTicker 25s linear infinite;
+        }
+
+        .ticker-track:hover {
+            animation-play-state: paused; /* Pausa al pasar el mouse para que puedan leer */
+        }
+
+        .ticker-item {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        @keyframes scrollTicker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
     </style>
 </head>
 <body>
@@ -419,14 +454,25 @@
         <div class="hero-banner-container">
             <img src="bannerweb.png" alt="Ingeniería y evaluación para inversiones agrícolas - SIA" class="hero-img">
         </div>
-         <!-- Cinta dinámica de datos (Rompe estaticidad y destaca propuesta de valor) -->  
-        <div class="ticker-container">
-            <span><i class="fa-solid fa-bolt"></i> Filtra créditos en 3 minutos</span>
-            <span>•</span>
-            <span><i class="fa-solid fa-chart-line"></i> Modelos basados en rentabilidad real de campo (ROI en 8 meses)</span>
-            <span>•</span>
-            <span><i class="fa-solid fa-shield-check"></i> Cero expedientes a ciegas para FIRA y SOFOM</span>
+       <!-- Cinta Dinámica Animada -->
+    <div class="ticker-wrapper">
+        <div class="ticker-track">
+            <!-- Bloque 1 -->
+            <span class="ticker-item"><i class="fa-solid fa-bolt"></i> Filtra créditos en 3 minutos</span>
+            <span class="ticker-item">•</span>
+            <span class="ticker-item"><i class="fa-solid fa-chart-line"></i> Modelos basados en rentabilidad real de campo (ROI en 8 meses)</span>
+            <span class="ticker-item">•</span>
+            <span class="ticker-item"><i class="fa-solid fa-shield-check"></i> Cero expedientes a ciegas para FIRA y SOFOM</span>
+            <span class="ticker-item">•</span>
+            <!-- Bloque 2 (Duplicado para continuidad infinita) -->
+            <span class="ticker-item"><i class="fa-solid fa-bolt"></i> Filtra créditos en 3 minutos</span>
+            <span class="ticker-item">•</span>
+            <span class="ticker-item"><i class="fa-solid fa-chart-line"></i> Modelos basados en rentabilidad real de campo (ROI en 8 meses)</span>
+            <span class="ticker-item">•</span>
+            <span class="ticker-item"><i class="fa-solid fa-shield-check"></i> Cero expedientes a ciegas para FIRA y SOFOM</span>
+            <span class="ticker-item">•</span>
         </div>
+    </div>
     </section>
         <!-- App Highlight Section (Texto a la izquierda, Video a la derecha) -->
     <section class="app-highlight" id="app">
