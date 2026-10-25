@@ -86,6 +86,29 @@
         .nav-links a:hover {
             color: var(--primary);
         }
+    /* Botón flotante de WhatsApp */  
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 9999;
+            background: #25D366;
+            color: white;
+            padding: 14px 22px;
+            border-radius: 50px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            font-weight: bold;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .whatsapp-float:hover {
+            background: #1ebc59;
+            transform: translateY(-3px);
+        }
 
         /* Hero Section ajustada para la imagen */
         .hero {
@@ -106,6 +129,27 @@
             border-radius: 12px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.08);
             display: block;
+        }
+   /* Ticker Dinámico (Rompe la estaticidad) */  
+        .ticker-container {
+            background: #e8f5e9;
+            color: var(--primary);
+            padding: 0.75rem 1rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border-top: 1px solid #c8e6c9;
+            border-bottom: 1px solid #c8e6c9;
+            overflow: hidden;
+            white-space: nowrap;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .ticker-container span {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .btn-group {
@@ -343,43 +387,19 @@
         @media (max-width: 868px) {
             .app-container { grid-template-columns: 1fr; }
             .nav-container { flex-direction: column; gap: 1rem; }
-        }
-
-        .boton-contacto {
-            position: fixed;
-            top: 18px;
-            right: 22px;
-            z-index: 9999;
-            padding: 12px 18px;
-            background: #25D366;
-            color: white;
-            border-radius: 999px;
-            box-shadow: 0 4px 14px rgba(0,0,0,.22);
-            font-family: Arial, sans-serif;
-            font-weight: bold;
-            text-decoration: none;
-        }
-
-        .boton-contacto:hover {
-            background: #1ebc59;
+              .ticker-container { font-size: 0.8rem; }  
         }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
-<a href="https://wa.me/818062040669?text=Hola%2C%20soy%20vendedor%20de%20maquinaria%20y%20deseo%20una%20demo."
+ <a href="https://wa.me/818062040669?text=Hola%2C%20soy%20vendedor%20de%20maquinaria%20y%20deseo%20una%20demo%20de%20SiCredi."
    target="_blank" 
     rel="noopener noreferrer"
-    style= "display:inline-block;
-    background:#25D366;
-    color: #ffffff;
-    padding:14px 22px;
-    border-radious:8px;
-    text-decoration: none;
-    font-weight: bold;">
-    💬 Contáctanos
+   class="whatsapp-float">
+        <i class="fa-brands fa-whatsapp" style="font-size: 1.4rem;"></i> Contáctanos
 </a>
+        <!-- Header -->
     <header>
         <div class="nav-container">
             <a href="#inicio" class="logo">
@@ -394,25 +414,29 @@
             </div>
         </div>
     </header>
-
     <!-- Hero Section con la nueva imagen -->
     <section class="hero" id="inicio">
         <div class="hero-banner-container">
             <img src="bannerweb.png" alt="Ingeniería y evaluación para inversiones agrícolas - SIA" class="hero-img">
         </div>
+         <!-- Cinta dinámica de datos (Rompe estaticidad y destaca propuesta de valor) -->  >>>>>>>>>>>>>>>>>>>>>>>>>>
+        <div class="ticker-container">
+            <span><i class="fa-solid fa-bolt"></i> Filtra créditos en 3 minutos</span>
+            <span>•</span>
+            <span><i class="fa-solid fa-chart-line"></i> Modelos basados en rentabilidad real de campo (ROI en 8 meses)</span>
+            <span>•</span>
+            <span><i class="fa-solid fa-shield-check"></i> Cero expedientes a ciegas para FIRA y SOFOM</span>
+        </div>
     </section>
-    
-    <!-- App Highlight Section (Texto a la izquierda, Video a la derecha) -->
+        <!-- App Highlight Section (Texto a la izquierda, Video a la derecha) -->
     <section class="app-highlight" id="app">
         <div class="app-container">
-            
-            <!-- Columna Izquierda: Títulos, Textos y Casos de Uso -->
+                        <!-- Columna Izquierda: Títulos, Textos y Casos de Uso -->
             <div class="app-text">
                 <h2>Evaluación financiera de inversiones agrícolas: App SiCredi</h2>
                 <p>No pierdas ventas por tardar semanas en evaluar el crédito de tus clientes. Genera corridas financieras con flujo neto agrícola y dictámenes en 3 minutos. Calcula la viabilidad crediticia y cierra más ventas de contado y financiado.</p>
                 <p>¿Puede el proyecto agrícola cubrir la inversión? SiCredi permite evaluar rápidamente la capacidad de pago de una operación, considerando las condiciones de financiamiento y la generación de flujo del proyecto agrícola. Diseñado para vendedores de maquinaria, asesores y empresas que necesitan realizar una primera evaluación financiera antes de presentar una operación de crédito.</p>
-                
-                <div class="app-badge-box">
+                                <div class="app-badge-box">
                     <strong>Funcionalidades Clave:</strong>
                     <ul>
                         <li><i class="fa-solid fa-check-circle" style="color:var(--primary);"></i> Evaluaciones financieras al instante: Determine preliminarmente si el proyecto presenta capacidad de pago antes de enviar la operación a la institución financiera.</li>
@@ -420,7 +444,6 @@
                         <li><i class="fa-solid fa-check-circle" style="color:var(--primary);"></i> Expedientes sin errores: Genera la información financiera para el expediente técnico de una SOFOM, FIRA o banco.</li>
                     </ul>
                 </div>
-
                 <h2 style="font-size: 1.6rem; margin-top: 1.5rem; margin-bottom: 1rem; color: var(--primary);">¿Para quién es SiCredi App?</h2>
                 <div class="app-badge-box">
                     <strong>Casos de uso:</strong>
@@ -431,7 +454,6 @@
                     </ul>
                 </div>
             </div>
-
             <!-- Columna Derecha: Video y Botones de Descarga -->
             <div>
                 <div style="width: 100%; margin-bottom: 1.5rem;">
@@ -440,8 +462,7 @@
                         Su navegador no soporta el reproductor de video.
                     </video>
                 </div>
-                
-                <div class="btn-group" style="flex-direction: column; align-items: stretch; width: 100%;">
+      <div class="btn-group" style="flex-direction: column; align-items: stretch; width: 100%;">
                     <a href="https://www.youtube.com/watch?v=Rmyxb_dN6W4&lc=UgzboQccJQmBBRyZ8cF4AaABAg" target="_blank" class="btn btn-primary" style="justify-content: center;">
                         <i class="fa-brands fa-google-play"></i> Descargar demo
                     </a>
@@ -450,10 +471,8 @@
                     </a>
                 </div>
             </div>
-
         </div>
     </section>
-
     <!-- Services Section -->
     <section class="services" id="servicios">
         <div class="section-title">
@@ -461,7 +480,6 @@
             <p>Acompañamos a productores y empresas agrícolas en cada etapa de su desarrollo evolutivo y tecnológico.</p>
         </div>
         <div class="grid">
-            
             <!-- Servicio 1 -->
             <div class="card">
                 <div>
@@ -475,7 +493,6 @@
                     </ul>
                 </div>
             </div>
-
             <!-- Servicio 2 -->
             <div class="card">
                 <div>
@@ -490,9 +507,8 @@
                     </ul>
                 </div>
             </div>
-
             <!-- Servicio 3 -->
-            <div class="card">
+              <div class="card" style="border-color: var(--primary); background: #fbfdfb;">    
                 <div>
                     <div class="card-icon"><i class="fa-solid fa-microscope"></i></div>
                     <h3>3. Evaluación Financiera</h3>
@@ -507,7 +523,6 @@
 
         </div>
     </section>
-
     <!-- CTA Section -->
     <section class="cta">
         <h2>¿Listo para transformar tu producción agrícola?</h2>
@@ -515,19 +530,11 @@
         <a href="https://play.google.com/store/apps/details?id=com.sumisoft.sicredit" target="_blank" class="btn btn-primary">
             Probar SiCredi App
         <a href="https://wa.me/818062040669?text=Hola%2C%20soy%20vendedor%20de%20maquinaria%20y%20deseo%20una%20demo."
-   target="_blank" 
-    rel="noopener noreferrer"
-    style= "display:inline-block;
-    background:#25D366;
-    color: #ffffff;
-    padding:14px 22px;
-    border-radious:8px;
-    text-decoration: none;
-    font-weight: bold;">
-    💬 Contáctanos
-</a>
+target="_blank" class="btn btn-secondary" style="background: white; color: var(--primary);">    
+                <i class="fa-brands fa-whatsapp"></i> Solicitar Demo por WhatsApp
+            </a>
+        </div>  
     </section>
-
     <!-- Footer -->
     <footer>
         <p>&copy; 2026 SIA — Servicios Integrales a la Agricultura. Todos los derechos reservados.</p>
@@ -536,6 +543,5 @@
             <a href="PoliticaPrivacidad.html" target="_blank"><i class="fa-solid fa-user-shield"></i> Política de Privacidad</a>
         </p>
     </footer>
-
 </body>
 </html>
