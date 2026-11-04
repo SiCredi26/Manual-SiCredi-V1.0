@@ -1,1 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SiCredi Web — Simulador Avanzado (Fase 2)</title>
+    <style>
+        body { font-family: 'Inter', Arial, sans-serif; background-color: #f4f7f6; color: #333; margin: 0; padding: 20px; }
+        .container { max-width: 950px; margin: 0 auto; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
+        h1 { color: #1e3a1e; font-size: 1.4rem; border-bottom: 2px solid #84cc16; padding-bottom: 10px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin-top: 15px; }
+        .group { display: flex; flex-direction: column; }
+        label { font-weight: 600; margin-bottom: 5px; font-size: 0.85rem; color: #4b5563; }
+        input, select { padding: 8px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 0.95rem; }
+        button { background-color: #16a34a; color: white; border: none; padding: 12px; font-size: 1rem; font-weight: bold; border-radius: 6px; cursor: pointer; margin-top: 20px; width: 100%; }
+        button:hover { background-color: #15803d; }
+        .box { margin-top: 20px; background: #f9fafb; border: 1px solid #e5e7eb; padding: 15px; border-radius: 8px; font-family: monospace; font-size: 0.85rem; white-space: pre-wrap; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 0.8rem; }
+        th, td { border: 1px solid #d1d5db; padding: 6px; text-align: left; }
+        th { background-color: #e5e7eb; }
+    </style>
+</head>
+<body>
 
+<div class="container">
+    <h1>🌱 SiCredi Fase 2 — Simulador Financiero y Agrícola Avanzado</h1>
+    
+    <div class="grid">
+        <div class="group">
+            <label>Precio del Tractor o Equipo ($):</label>
+            <input type="number" id="precio" value="1200000">
+        </div>
+        <div class="group">
+            <label>Enganche (%):</label>
+            <input type="number" id="enganchePorc" value="20">
+        </div>
+        <div class="group">
+            <label>Tasa Anual Base (%):</label>
+            <input type="number" id="tasaBase" value="15" step="0.1">
+        </div>
+        <div class="group">
+            <label>Plazo (Años):</label>
+            <input type="number" id="plazo" value="5">
+        </div>
+        <div class="group">
+            <label>Superficie Total (Hectáreas):</label>
+            <input type="number" id="has" value="25">
+        </div>
+        <div class="group">
+            <label>Flujo Neto Total del Cultivo ($):</label>
+            <input type="number" id="flujoNeto" value="500000">
+        </div>
+        <div class="group">
+            <label>Frecuencia de Pago:</label>
+            <select id="frecuencia">
+                <option value="12">Mensual</option>
+                <option value="4">Trimestral</option>
+                <option value="2">Semestral</option>
+                <option value="1" selected>Anual</option>
+            </select>
+        </div>
+        <div class="group">
+            <label>Método de Amortización:</label>
+            <select id="metodo">
+                <option value="frances">Francés (Cuota Fija)</option>
+                <option value="aleman">Alemán (Capital Fijo)</option>
+            </select>
+        </div>
+        <div class="group">
+            <label>IVA sobre Intereses (%):</label>
+            <input type="number" id="ivaPorc" value="16">
+        </div>
+    </div>
+
+    <button onclick="ejecutarSimulacionFase2()">Generar Dictamen y Tabla (Fase 2)</button>
+
+    <div id="resultadoTexto" class="box">Los resultados detallados aparecerán aquí...</div>
+    <div id="contenedorTablaAmortizacion" style="overflow-x:auto;"></div>
+</div>
+
+<script>
+function ejecutarSimulacionFase2() {
+    try {
+        let precio = parseFloat(document.getElementById('precio').value) || 0;
+        let engPorc = parseFloat(document.getElementById('enganchePorc').value) || 0;
+        let tasaAnual = (parseFloat(document.getElementById('tasaBase').value) || 0) / 100;
+        let plazoAnios = parseFloat(document.getElementById('plazo').value) || 0;
+        let has = parseFloat(document.getElementById('has').value) || 1;
+        let fNeto = parseFloat(document.getElementById('flujoNeto').value) || 0;
+        let pagosAnio = parseInt(document.getElementById('frecuencia').value);
+        let esFrances = document.getElementById('metodo').value === 'frances';
+        let ivaPorc = parseFloat(document.getElementById('ivaPorc').value) || 0;
+
+        let formatoPesos = (val) => val.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' });
+
+        let enganche = precio * (engPorc / 100);
+        let montoFinanciar = precio - enganche;
+        let numeroPagos = Math.round(plazoAnios * pagosAnio);
+        let tasaPeriodo = tasaAnual / pagosAnio;
+
+        if (numeroPagos <= 0 || montoFinanciar <= 0) {
+            alert("Verifique los valores ingresados.");
+            return;
+        }
+
+        let tabla = [];
+        let saldoTemp = montoFinanciar;
+        let totalPagar = 0;
+        let interesesTotales = 0;
+        let pagoInicial = 0;
+        let pagoFinal = 0;
+
+        if (esFrances) {
+            let cuota = (tasaPeriodo === 0) ? (montoFinanciar / numeroPagos) : (montoFinanciar * tasaPeriodo) / (1 - Math.pow(1 + tasaPeriodo, -numeroPagos));
+            pagoInicial = cuota;
+            pagoFinal = cuota;
+
+            for (let i = 1; i <= numeroPagos; i++) {
+                let inter = saldoTemp * tasaPeriodo;
+                let ivaInt = inter * (ivaPorc / 100);
+                let cap = cuota - inter;
+                if (i === numeroPagos) cap = saldoTemp;
+                let totalPeriodo = cap + inter + ivaInt;
+                saldoTemp -= cap;
+                if (saldoTemp < 0.01) saldoTemp = 0;
+                tabla.push({ periodo: i, pago: totalPeriodo, interes: inter, iva: ivaInt, capital: cap, saldo: saldoTemp });
+            }
+        } else {
+            let capFijo = montoFinanciar / numeroPagos;
+            for (let i = 1; i <= numeroPagos; i++) {
+                let inter = saldoTemp * tasaPeriodo;
+                let ivaInt = inter * (ivaPorc / 100);
+                let cap = (i === numeroPagos) ? saldoTemp : capFijo;
+                let totalPeriodo = cap + inter + ivaInt;
+                saldoTemp -= cap;
+                if (saldoTemp < 0.01) saldoTemp = 0;
+                tabla.push({ periodo: i, pago: totalPeriodo, interes: inter, iva: ivaInt, capital: cap, saldo: saldoTemp });
+                if (i === 1) pagoInicial = totalPeriodo;
+                if (i === numeroPagos) pagoFinal = totalPeriodo;
+            }
+        }
+
+        totalPagar = tabla.reduce((acc, curr) => acc + curr.pago, 0);
+        interesesTotales = tabla.reduce((acc, curr) => acc + curr.interes, 0);
+
+        // Servicio anual (primer año)
+        let pagosPrimerAno = Math.min(numeroPagos, pagosAnio);
+        let servicioDeudaAnual = 0;
+        for (let i = 0; i < pagosPrimerAno; i++) {
+            servicioDeudaAnual += tabla[i].pago;
+        }
+
+        // Análisis de Capacidad y BEP (Punto de Equilibrio en Has)
+        let porcFlujoUsable = 0.65;
+        let dscrMinimo = 1.30;
+        let flujoUsable = fNeto * porcFlujoUsable;
+        let dscrAjustado = servicioDeudaAnual > 0 ? flujoUsable / servicioDeudaAnual : 0;
+        let flujoAntesDeDeudaMinimo = (servicioDeudaAnual * dscrMinimo) / porcFlujoUsable;
+        
+        let flujoNetoPorHa = fNeto / has;
+        let bepHas = flujoNetoPorHa > 0 ? (flujoAntesDeDeudaMinimo / flujoNetoPorHa) : 0;
+
+        // Renderizado de Resultados
+        let txt = `=== RESULTADOS DE SIMULACIÓN AVANZADA (FASE 2) ===\n`;
+        txt += `Monto a Financiar: ${formatoPesos(montoFinanciar)} | Enganche: ${formatoPesos(enganche)}\n`;
+        txt += `Método: ${esFrances ? 'FRANCÉS' : 'ALEMÁN'} | Frecuencia: ${pagosAnio} pagos/año\n`;
+        txt += `Total a Pagar con IVA: ${formatoPesos(totalPagar)} (Intereses: ${formatoPesos(interesesTotales)})\n\n`;
+        
+        txt += `=== ANÁLISIS DE CAPACIDAD Y PUNTO DE EQUILIBRIO (BEP) ===\n`;
+        txt += `Servicio Anual de Deuda: ${formatoPesos(servicioDeudaAnual)}\n`;
+        txt += `DSCR Ajustado: ${dscrAjustado.toFixed(2)} (Mínimo requerido: 1.30)\n`;
+        txt += `Superficie Mínima (BEP): ${bepHas.toFixed(2)} Ha. necesarias para respaldar la deuda (de ${has} Ha. totales)\n\n`;
+
+        if (dscrAjustado >= dscrMinimo) {
+            txt += `✓ DICTAMEN: CUMPLE EL CRITERIO DE CAPACIDAD DE PAGO`;
+        } else {
+            txt += `⚠ DICTAMEN: CAPACIDAD DE PAGO INSUFICIENTE`;
+        }
+
+        document.getElementById('resultadoTexto').innerText = txt;
+
+        // Renderizar Tabla
+        let htmlTbl = `<h3>=== TABLA DE AMORTIZACIÓN DETALLADA ===</h3>`;
+        htmlTbl += `<table><tr><th>Periodo</th><th>Pago Total</th><th>Interés</th><th>IVA Int.</th><th>Capital</th><th>Saldo</th></tr>`;
+        tabla.forEach(r => {
+            htmlTbl += `<tr><td>${r.periodo}</td><td>${formatoPesos(r.pago)}</td><td>${formatoPesos(r.interes)}</td><td>${formatoPesos(r.iva)}</td><td>${formatoPesos(r.capital)}</td><td>${formatoPesos(r.saldo)}</td></tr>`;
+        });
+        htmlTbl += `</table>`;
+        document.getElementById('contenedorTablaAmortizacion').innerHTML = htmlTbl;
+
+    } catch(e) {
+        alert("Error en el cálculo: " + e.message);
+    }
+}
+</script>
+
+</body>
+</html>
