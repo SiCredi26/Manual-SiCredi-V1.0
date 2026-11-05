@@ -1,19 +1,34 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<!-- Google tag (gtag.js) --> 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WRC3Q48F5C"></script>
-    <script> 
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);} 
-        gtag('js', new Date()); 
-        gtag('config', 'G-WRC3Q48F5C'); 
- </script>
-
-    <meta charset="UTF-8">
+ <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SIA | Servicios Integrales a la Agricultura</title>
-    
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <title>SiCredi | Capacidad de pago para crédito de maquinaria agrícola en México | SIA</title>
+    <meta name="description" content="SiCredi ayuda a vendedores de tractores y maquinaria agrícola en México a realizar una primera evaluación de la capacidad de pago del productor antes de presentar una solicitud de financiamiento.">
+    <meta name="author" content="SIA — Servicios Integrales a la Agricultura">
+    <link rel="canonical" href="https://sicredi26.github.io/manual-sicredi-v1.0/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_MX">
+    <meta property="og:site_name" content="SIA — Servicios Integrales a la Agricultura">
+    <meta property="og:title" content="SiCredi | Evaluación preliminar de crédito para maquinaria agrícola">
+    <meta property="og:description" content="Evalúa la capacidad de pago de proyectos agrícolas antes de presentar una operación de crédito. Diseñada para vendedores de maquinaria agrícola en México.">
+    <meta property="og:url" content="https://sicredi26.github.io/manual-sicredi-v1.0/">
+    <meta property="og:image" content="https://sicredi26.github.io/manual-sicredi-v1.0/bannerweb.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SiCredi | Crédito para maquinaria agrícola en México">
+    <meta name="twitter:description" content="Primera evaluación de capacidad de pago para operaciones de maquinaria agrícola.">
+    <meta name="twitter:image" content="https://sicredi26.github.io/manual-sicredi-v1.0/bannerweb.png">
+
+    <!-- Google Analytics 4: se conserva el identificador original -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WRC3Q48F5C"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-WRC3Q48F5C');
+    </script>
+   
     <!-- Google Fonts & FontAwesome Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -480,9 +495,9 @@
         <div class="app-container">
                         <!-- Columna Izquierda: Títulos, Textos y Casos de Uso -->
             <div class="app-text">
-                <h2>Cierra la venta de tu tractor sin que la SOFOM te rechace el expediente: App SiCredi</h2>
-                <p>Evalúa el flujo neto y la capacidad de pago real del productor en 3 minutos. Evita que tu cliente se enfríe y asegura tu comisión. Calcula la viabilidad crediticia y cierra más ventas de contado y financiado.</p>
-                <p>¿Puede el proyecto agrícola cubrir la inversión? SiCredi permite evaluar rápidamente la capacidad de pago de una operación, considerando las condiciones de financiamiento y la generación de flujo del proyecto agrícola. Diseñado para vendedores de maquinaria, asesores y empresas que necesitan realizar una primera evaluación financiera antes de presentar una operación de crédito.</p>
+                 <h1>SiCredi: evalúa la capacidad de pago para financiar tractores y maquinaria agrícola en México</h1>
+                <p>Antes de presentar una solicitud de crédito, realiza una primera evaluación financiera del productor. SiCredi ayuda al vendedor de maquinaria agrícola a analizar si los ingresos y el flujo del proyecto pueden soportar los pagos de la inversión.</p>
+                <p>La herramienta está diseñada para vendedores y distribuidores de tractores, asesores y empresas del sector agropecuario que necesitan estimar la capacidad de pago del cliente y comparar escenarios de financiamiento. Es una evaluación preliminar: cada banco, SOFOM, caja o institución financiera conserva sus propios requisitos, políticas y criterios de autorización.</p>
                                 <div class="app-badge-box">
                     <strong>Funcionalidades Clave:</strong>
                     <ul>
@@ -592,5 +607,16 @@ target="_blank" class="btn btn-secondary" style="background: white; color: var(-
             <a href="PoliticaPrivacidad.html" target="_blank"><i class="fa-solid fa-user-shield"></i> Política de Privacidad</a>
         </p>
     </footer>
+       <!-- Medición de clics hacia Google Play en Google Analytics 4 -->
+    <script>
+        document.addEventListener('click', function (event) {
+            const link = event.target.closest('a[href*="play.google.com/store/apps/details"]');
+            if (!link || typeof gtag !== 'function') return;
+            gtag('event', 'click_google_play', {
+                link_url: link.href,
+                link_text: link.textContent.trim()
+            });
+        });
+    </script>   
 </body>
 </html>
