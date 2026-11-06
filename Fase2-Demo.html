@@ -154,7 +154,7 @@ function ejecutarSimulacionFase2() {
         let porcFlujoUsable = 0.65;
         let dscrMinimo = 1.30;
         let flujoUsable = fNeto * porcFlujoUsable;
-        let dscrAjustado = servicioDeudaAnual > 0 ? flujoUsable / servicioDeudaAnual : 0;
+        let dscrAjustado = servicioDeudaAnual > 0 ? fNeto / servicioDeudaAnual : 0;
         let flujoAntesDeDeudaMinimo = (servicioDeudaAnual * dscrMinimo) / porcFlujoUsable;
         
         let flujoNetoPorHa = fNeto / has;
@@ -167,7 +167,7 @@ function ejecutarSimulacionFase2() {
         txt += `Total a Pagar con IVA: ${formatoPesos(totalPagar)} (Intereses: ${formatoPesos(interesesTotales)})\n\n`;
         
         txt += `=== ANÁLISIS DE CAPACIDAD Y PUNTO DE EQUILIBRIO (BEP) ===\n`;
-        txt += `Servicio Anual de Deuda: ${formatoPesos(servicioDeudaAnual)}\n`;
+        txt += `Servicio Anual de Deuda (PRIMER PAGO): ${formatoPesos(servicioDeudaAnual)}\n`;
         txt += `DSCR Ajustado: ${dscrAjustado.toFixed(2)} (Mínimo requerido: 1.30)\n`;
         txt += `Superficie Mínima (BEP): ${bepHas.toFixed(2)} Ha. necesarias para respaldar la deuda. totales)\n\n`;
 
