@@ -169,7 +169,7 @@ function ejecutarSimulacionFase2() {
         txt += `=== ANÁLISIS DE CAPACIDAD Y PUNTO DE EQUILIBRIO (BEP) ===\n`;
         txt += `Servicio Anual de Deuda: ${formatoPesos(servicioDeudaAnual)}\n`;
         txt += `DSCR Ajustado: ${dscrAjustado.toFixed(2)} (Mínimo requerido: 1.30)\n`;
-        txt += `Superficie Mínima (BEP): ${bepHas.toFixed(2)} Ha. necesarias para respaldar la deuda (de ${has} Ha. totales)\n\n`;
+        txt += `Superficie Mínima (BEP): ${bepHas.toFixed(2)} Ha. necesarias para respaldar la deuda. totales)\n\n`;
 
         if (dscrAjustado >= dscrMinimo) {
             txt += `✓ DICTAMEN: CUMPLE EL CRITERIO DE CAPACIDAD DE PAGO`;
