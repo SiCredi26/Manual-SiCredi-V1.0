@@ -167,9 +167,9 @@ function ejecutarSimulacionFase2() {
         txt += `Total a Pagar con IVA: ${formatoPesos(totalPagar)} (Intereses: ${formatoPesos(interesesTotales)})\n\n`;
         
         txt += `=== ANÁLISIS DE CAPACIDAD Y PUNTO DE EQUILIBRIO (BEP) ===\n`;
-        txt += `Servicio Anual de Deuda (PRIMER PAGO): ${formatoPesos(servicioDeudaAnual)}\n`;
+        txt += `Servicio Anual de Deuda + IVA (PRIMER PAGO): ${formatoPesos(servicioDeudaAnual)}\n`;
         txt += `DSCR Ajustado: ${dscrAjustado.toFixed(2)} (Mínimo requerido: 1.30)\n`;
-        txt += `Superficie Mínima (BEP): ${bepHas.toFixed(2)} Ha. necesarias para respaldar la deuda. totales)\n\n`;
+        txt += `Superficie Mínima considerando DSCR mínimo y 65% del flujo neto (BEP): ${bepHas.toFixed(2)} Ha. necesarias para respaldar la deuda. \n\n`;
 
         if (dscrAjustado >= dscrMinimo) {
             txt += `✓ DICTAMEN: CUMPLE EL CRITERIO DE CAPACIDAD DE PAGO`;
