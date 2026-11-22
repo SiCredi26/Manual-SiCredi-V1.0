@@ -79,117 +79,87 @@
 </div>
 
 <script>
-function ejecutarSimulacionFase2() {
+const WORKER_URL = "https://sicredi-engine.creditsi006.workers.dev/";
+
+async function ejecutarSimulacionFase2() {
+    const btn = document.querySelector("button");
+    const resBox = document.getElementById("resultadoTexto");
+    const tblBox = document.getElementById("contenedorTablaAmortizacion");
+
     try {
-        let precio = parseFloat(document.getElementById('precio').value) || 0;
-        let engPorc = parseFloat(document.getElementById('enganchePorc').value) || 0;
-        let tasaAnual = (parseFloat(document.getElementById('tasaBase').value) || 0) / 100;
-        let plazoAnios = parseFloat(document.getElementById('plazo').value) || 0;
-        let has = parseFloat(document.getElementById('has').value) || 1;
-        let fNeto = parseFloat(document.getElementById('flujoNeto').value) || 0;
-        let pagosAnio = parseInt(document.getElementById('frecuencia').value);
-        let esFrances = document.getElementById('metodo').value === 'frances';
-        let ivaPorc = parseFloat(document.getElementById('ivaPorc').value) || 0;
+        const payload = {
+            precio: Number(document.getElementById("precio").value),
+            enganchePorc: Number(document.getElementById("enganchePorc").value),
+            tasaBase: Number(document.getElementById("tasaBase").value),
+            plazo: Number(document.getElementById("plazo").value),
+            has: Number(document.getElementById("has").value),
+            flujoNeto: Number(document.getElementById("flujoNeto").value),
+            frecuencia: Number(document.getElementById("frecuencia").value),
+            ivaPorc: Number(document.getElementById("ivaPorc").value),
+            metodo: document.getElementById("metodo").value
+        };
 
-        let formatoPesos = (val) => val.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' });
+        if (btn) btn.disabled = true;
+        resBox.innerText = "Calculando en SiCredi Engine...";
 
-        let enganche = precio * (engPorc / 100);
-        let montoFinanciar = precio - enganche;
-        let numeroPagos = Math.round(plazoAnios * pagosAnio);
-        let tasaPeriodo = tasaAnual / pagosAnio;
+        const resp = await fetch(WORKER_URL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(payload)
+        });
 
-        if (numeroPagos <= 0 || montoFinanciar <= 0) {
-            alert("Verifique los valores ingresados.");
+        const data = await resp.json();
+
+        if (!resp.ok || !data.exito) {
+            resBox.innerText = "Error: " + (data.error || "Revisa los datos ingresados.");
+            tblBox.innerHTML = "";
             return;
         }
 
-        let tabla = [];
-        let saldoTemp = montoFinanciar;
-        let totalPagar = 0;
-        let interesesTotales = 0;
-        let pagoInicial = 0;
-        let pagoFinal = 0;
+        const r = data.resultados;
+        const tabla = data.tablaAmortizacion || [];
+        const formatoPesos = (val) =>
+            (Number(val) || 0).toLocaleString("es-MX", { style: "currency", currency: "MXN" });
 
-        if (esFrances) {
-            let cuota = (tasaPeriodo === 0) ? (montoFinanciar / numeroPagos) : (montoFinanciar * tasaPeriodo) / (1 - Math.pow(1 + tasaPeriodo, -numeroPagos));
-            pagoInicial = cuota;
-            pagoFinal = cuota;
-
-            for (let i = 1; i <= numeroPagos; i++) {
-                let inter = saldoTemp * tasaPeriodo;
-                let ivaInt = inter * (ivaPorc / 100);
-                let cap = cuota - inter;
-                if (i === numeroPagos) cap = saldoTemp;
-                let totalPeriodo = cap + inter + ivaInt;
-                saldoTemp -= cap;
-                if (saldoTemp < 0.01) saldoTemp = 0;
-                tabla.push({ periodo: i, pago: totalPeriodo, interes: inter, iva: ivaInt, capital: cap, saldo: saldoTemp });
-            }
-        } else {
-            let capFijo = montoFinanciar / numeroPagos;
-            for (let i = 1; i <= numeroPagos; i++) {
-                let inter = saldoTemp * tasaPeriodo;
-                let ivaInt = inter * (ivaPorc / 100);
-                let cap = (i === numeroPagos) ? saldoTemp : capFijo;
-                let totalPeriodo = cap + inter + ivaInt;
-                saldoTemp -= cap;
-                if (saldoTemp < 0.01) saldoTemp = 0;
-                tabla.push({ periodo: i, pago: totalPeriodo, interes: inter, iva: ivaInt, capital: cap, saldo: saldoTemp });
-                if (i === 1) pagoInicial = totalPeriodo;
-                if (i === numeroPagos) pagoFinal = totalPeriodo;
-            }
-        }
-
-        totalPagar = tabla.reduce((acc, curr) => acc + curr.pago, 0);
-        interesesTotales = tabla.reduce((acc, curr) => acc + curr.interes, 0);
-
-        // Servicio anual (primer año)
-        let pagosPrimerAno = Math.min(numeroPagos, pagosAnio);
-        let servicioDeudaAnual = 0;
-        for (let i = 0; i < pagosPrimerAno; i++) {
-            servicioDeudaAnual += tabla[i].pago;
-        }
-
-        // Análisis de Capacidad y BEP (Punto de Equilibrio en Has)
-        let porcFlujoUsable = 0.65;
-        let dscrMinimo = 1.30;
-        let flujoUsable = fNeto * porcFlujoUsable;
-        let dscrAjustado = servicioDeudaAnual > 0 ? fNeto / servicioDeudaAnual : 0;
-        let flujoAntesDeDeudaMinimo = (servicioDeudaAnual * dscrMinimo) / porcFlujoUsable;
-        
-        let flujoNetoPorHa = fNeto / has;
-        let bepHas = flujoNetoPorHa > 0 ? (flujoAntesDeDeudaMinimo / flujoNetoPorHa) : 0;
-
-        // Renderizado de Resultados
         let txt = `=== RESULTADOS DE SIMULACIÓN AVANZADA (FASE 2) ===\n`;
-        txt += `Monto a Financiar: ${formatoPesos(montoFinanciar)} | Enganche: ${formatoPesos(enganche)}\n`;
-        txt += `Método: ${esFrances ? 'FRANCÉS' : 'ALEMÁN'} | Frecuencia: ${pagosAnio} pagos/año\n`;
-        txt += `Total a Pagar con IVA: ${formatoPesos(totalPagar)} (Intereses: ${formatoPesos(interesesTotales)})\n\n`;
-        
-        txt += `=== ANÁLISIS DE CAPACIDAD Y PUNTO DE EQUILIBRIO (BEP) ===\n`;
-        txt += `Servicio Anual de Deuda + IVA (PRIMER PAGO): ${formatoPesos(servicioDeudaAnual)}\n`;
-        txt += `DSCR Ajustado: ${dscrAjustado.toFixed(2)} (Mínimo requerido: 1.30)\n`;
-        txt += `Superficie Mínima considerando DSCR mínimo y 65% del flujo neto (BEP): ${bepHas.toFixed(2)} Ha. necesarias para respaldar la deuda. \n\n`;
+        txt += `Monto a Financiar: ${formatoPesos(r.montoFinanciar)} | Enganche: ${formatoPesos(r.enganche)}\n`;
+        txt += `Método: ${payload.metodo === "frances" ? "FRANCÉS" : "ALEMÁN"} | Frecuencia: ${payload.frecuencia} pagos/año\n`;
+        txt += `Total a Pagar con IVA: ${formatoPesos(r.totalPagar)} (Intereses: ${formatoPesos(r.totalIntereses)} | IVA: ${formatoPesos(r.totalIVA)})\n\n`;
 
-        if (dscrAjustado >= dscrMinimo) {
-            txt += `✓ DICTAMEN: CUMPLE EL CRITERIO DE CAPACIDAD DE PAGO`;
+        txt += `=== ANÁLISIS DE CAPACIDAD Y PUNTO DE EQUILIBRIO (BEP) ===\n`;
+        txt += `Servicio Anual de Deuda + IVA (PRIMER AÑO): ${formatoPesos(r.servicioDeudaAnual)}\n`;
+        txt += `DSCR Ajustado: ${Number(r.dscrAjustado).toFixed(2)} (Mínimo requerido: ${Number(r.dscrMinimo).toFixed(2)})\n`;
+        txt += `Superficie Mínima considerando DSCR mínimo y 65% del flujo neto (BEP): ${r.bepHas === null ? "N/A" : Number(r.bepHas).toFixed(2) + " Ha."} necesarias para respaldar la deuda.\n\n`;
+
+        if (r.dictamen === "SUJETO") {
+            txt += `✓ DICTAMEN: SUJETO (CUMPLE EL CRITERIO DE CAPACIDAD DE PAGO)`;
         } else {
-            txt += `⚠ DICTAMEN: CAPACIDAD DE PAGO INSUFICIENTE`;
+            txt += `⚠ DICTAMEN: NO SUJETO (CAPACIDAD DE PAGO INSUFICIENTE)`;
         }
 
-        document.getElementById('resultadoTexto').innerText = txt;
+        resBox.innerText = txt;
 
-        // Renderizar Tabla
         let htmlTbl = `<h3>=== TABLA DE AMORTIZACIÓN DETALLADA ===</h3>`;
         htmlTbl += `<table><tr><th>Periodo</th><th>Pago Total</th><th>Interés</th><th>IVA Int.</th><th>Capital</th><th>Saldo</th></tr>`;
-        tabla.forEach(r => {
-            htmlTbl += `<tr><td>${r.periodo}</td><td>${formatoPesos(r.pago)}</td><td>${formatoPesos(r.interes)}</td><td>${formatoPesos(r.iva)}</td><td>${formatoPesos(r.capital)}</td><td>${formatoPesos(r.saldo)}</td></tr>`;
+        tabla.forEach((fila) => {
+            htmlTbl += `<tr>`;
+            htmlTbl += `<td>${fila.numero}</td>`;
+            htmlTbl += `<td>${formatoPesos(fila.pago)}</td>`;
+            htmlTbl += `<td>${formatoPesos(fila.interes)}</td>`;
+            htmlTbl += `<td>${formatoPesos(fila.iva)}</td>`;
+            htmlTbl += `<td>${formatoPesos(fila.capital)}</td>`;
+            htmlTbl += `<td>${formatoPesos(fila.saldoFinal)}</td>`;
+            htmlTbl += `</tr>`;
         });
         htmlTbl += `</table>`;
-        document.getElementById('contenedorTablaAmortizacion').innerHTML = htmlTbl;
+        tblBox.innerHTML = htmlTbl;
 
-    } catch(e) {
-        alert("Error en el cálculo: " + e.message);
+    } catch (e) {
+        resBox.innerText = "Error al conectar con el servidor: " + e.message;
+    } finally {
+        if (btn) btn.disabled = false;
     }
 }
 </script>
