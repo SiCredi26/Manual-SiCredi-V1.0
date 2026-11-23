@@ -100,17 +100,8 @@ async function ejecutarSimulacionFase2() {
 
         if (btn) btn.disabled = true;
         resBox.innerText = "Calculando en SiCredi Engine...";
-
-        const resp = await fetch(WORKER_URL, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(payload)
-        });
-
-        const data = await resp.json();
-
+//hyaku4kara Jsanarimashita
+              
         if (!resp.ok || !data.exito) {
             resBox.innerText = "Error: " + (data.error || "Revisa los datos ingresados.");
             tblBox.innerHTML = "";
